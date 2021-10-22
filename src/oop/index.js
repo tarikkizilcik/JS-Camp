@@ -62,3 +62,22 @@ let totalUnitPriceWithKDV = products
     .reduce((total, p) => total + p.unitPrice, 0);
 
 console.log(totalUnitPriceWithKDV);
+
+let MovieList = [
+    { id: 0, name: "Lord of the Rings ", category: "Fantastic" },
+    { id: 1, name: "Harry Potter ", category: "Fantastic" },
+    { id: 2, name: "Kolpacino ", category: "Comedy" },
+    { id: 3, name: "Last Vegas ", category: "Horror" },
+    { id: 4, name: "Matrix ", category: "Science Fiction" },
+    { id: 5, name: "Fast and Furious ", category: "Action" },
+]
+
+//Same result with different usage for filter and forEach
+let firstFilteredMovieList = MovieList.filter(movie => movie.category == "Fantastic")
+console.log(firstFilteredMovieList);
+
+let secondFilteredMovieList = MovieList.forEach(movie => {
+    if (movie.category == "Fantastic") {
+        console.log(movie);
+    }
+});
