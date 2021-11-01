@@ -5,16 +5,16 @@ class Customer {
     }
 }
 
-let customer = new Customer(1, "12345");
+let customer = new Customer(1, "123");
 //prototyping
 customer.name = "Tarık Kızılcık";
-console.log(customer.name);
+// console.log(customer.name);
 
 //static
-Customer.bisey = "Test";
-console.log(Customer.bisey)
+Customer.test = "Test";
+// console.log(Customer.test)
 
-console.log(customer.customerNumber);
+// console.log(customer.customerNumber);
 
 //inheritence
 class IndividualCustomer extends Customer {
@@ -31,7 +31,7 @@ class CorporateCustomer extends Customer {
     }
 }
 
-let products = [
+let vatanBilgisayar = [
     { id: 1, name: "Acer Laptop", unitPrice: 15000 },
     { id: 2, name: "Asus Laptop", unitPrice: 16000 },
     { id: 3, name: "Hp Laptop", unitPrice: 13000 },
@@ -39,45 +39,78 @@ let products = [
     { id: 5, name: "Casper Laptop", unitPrice: 17000 },
 ]
 
-// console.log("<ul>")
-// products.map(product => console.log(`<li>${product.name}</li>`))
-// console.log("</ul>")
+// vatanBilgisayar.map(laptop => console.log("Ürün Id: " + laptop.id + "\n" + "Ürün Etiket Fiyatı: " + laptop.unitPrice))
 
-let filteredProducts = products.filter(product => product.unitPrice > 15000);
+let filteredProducts = vatanBilgisayar.filter(laptop => laptop.unitPrice > 15000);
 
-filteredProducts.map(product => console.log(product.name));
+// filteredProducts.map(laptop => console.log(laptop.name));
 
 // console.log(filteredProducts);
 
-let totalUnitPrice = products.reduce((total, product) => total + product.unitPrice, 0)
+let totalUnitPrice = vatanBilgisayar.reduce((toplam, laptop) => toplam + laptop.unitPrice, 0)
 
-console.log(totalUnitPrice);
+// console.log(totalUnitPrice);
 
-let totalUnitPriceWithKDV = products
-    .filter(p => p.unitPrice > 13000)
-    .map(p => {
-        p.unitPrice = p.unitPrice * 1.18
-        return p
+let kdvliTutar = vatanBilgisayar
+    .filter(laptop => laptop.unitPrice > 13000 && laptop.unitPrice != 15000 && laptop.unitPrice != 17000)
+    .map(laptop => {
+        laptop.unitPrice = laptop.unitPrice * 1.18
+        return laptop
     })
-    .reduce((total, p) => total + p.unitPrice, 0);
+    .reduce((total, laptop) => total + laptop.unitPrice, 0);
 
-console.log(totalUnitPriceWithKDV);
+// console.log(kdvliTutar);
 
-let MovieList = [
-    { id: 0, name: "Lord of the Rings ", category: "Fantastic" },
-    { id: 1, name: "Harry Potter ", category: "Fantastic" },
-    { id: 2, name: "Kolpacino ", category: "Comedy" },
-    { id: 3, name: "Last Vegas ", category: "Horror" },
-    { id: 4, name: "Matrix ", category: "Science Fiction" },
-    { id: 5, name: "Fast and Furious ", category: "Action" },
-]
+// let MovieList = [
+//     { id: 0, name: "Lord of the Rings ", category: "Fantastic" },
+//     { id: 1, name: "Harry Potter ", category: "Fantastic" },
+//     { id: 2, name: "Kolpacino ", category: "Comedy" },
+//     { id: 3, name: "Last Vegas ", category: "Horror" },
+//     { id: 4, name: "Matrix ", category: "Science Fiction" },
+//     { id: 5, name: "Fast and Furious ", category: "Action" },
+// ]
 
 //Same result with different usage for filter and forEach
-let firstFilteredMovieList = MovieList.filter(movie => movie.category == "Fantastic")
-console.log(firstFilteredMovieList);
+// let firstFilteredMovieList = MovieList.filter(movie => movie.category == "Fantastic")
+// console.log(firstFilteredMovieList);
 
-let secondFilteredMovieList = MovieList.forEach(movie => {
-    if (movie.category == "Fantastic") {
-        console.log(movie);
-    }
-});
+// let secondFilteredMovieList = MovieList.forEach(movie => {
+//     if (movie.category == "Fantastic") {
+//         console.log(movie);
+//     }
+// });
+
+
+// let MovieList = [
+//     { id: 0, name: "Lord of the Rings ", category: "Fantastic" },
+//     { id: 1, name: "Harry Potter ", category: "Fantastic" },
+//     { id: 2, name: "Kolpacino ", category: "Comedy" },
+//     { id: 3, name: "Last Vegas ", category: "Horror" },
+//     { id: 4, name: "Matrix ", category: "Science Fiction" },
+//     { id: 5, name: "Fast and Furious ", category: "Action" },
+// ]
+
+// let Movifilter = MovieList.find(film => film.id == 2)
+// console.log(Movifilter)
+
+// console.log(class1);
+
+// console.log(küme);
+
+// let totalPrice = vatanBilgisayar.reduce((total, laptop) => total + laptop.unitPrice, 0)
+// console.log(totalPrice);
+
+
+// var a = 1;
+// let b = 2;
+// let b = 6;
+// {
+//     a = 3;
+//     b = 4;
+//     var c = 5;
+
+// }
+
+
+// console.log(a, b, c);
+
