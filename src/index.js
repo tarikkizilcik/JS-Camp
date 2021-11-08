@@ -101,15 +101,16 @@ let kdvliTutar = vatanBilgisayar
 // console.log(totalPrice);
 
 
-// var a = 1;
-// let b = 2;
+var a = 1;
+var a = 2;
+let b = 2;
 // let b = 6;
-// {
-//     a = 3;
-//     b = 4;
-//     var c = 5;
+{
+    a = 3;
+    b = 4;
+    var c = 5;
 
-// }
+}
 
 
 // console.log(a, b, c);
