@@ -6,14 +6,14 @@ export default class ValidationControls {
     }
     checkAnyErrorsForUsers(user) {
         if (user.type === 'customer') {
-            let customerRequiredFields = "id firstName lastName age city".split(" ")
+            const customerRequiredFields = "id firstName lastName age city".split(" ")
             let hasErrors = false;
-            for (const field of customerRequiredFields) {
+            customerRequiredFields.map(field => {
                 if (!user[field]) {
-                    hasErrors = true
+                    hasErrors = true;
                     this.errors.push(new DataError(`Validation problem. ${field} is required`, user))
                 }
-            }
+            })
             if (user.age) {
                 if (Number.isNaN(Number.parseInt(+user.age))) {
                     hasErrors = true
@@ -23,14 +23,14 @@ export default class ValidationControls {
             return hasErrors
         }
         if (user.type === 'employee') {
-            let employeeRequiredFields = "id firstName lastName age city salary".split(" ")
+            const employeeRequiredFields = "id firstName lastName age city salary".split(" ")
             let hasErrors = false;
-            for (const field of employeeRequiredFields) {
+            employeeRequiredFields.map(field => {
                 if (!user[field]) {
-                    hasErrors = true
+                    hasErrors = true;
                     this.errors.push(new DataError(`Validation problem. ${field} is required`, user))
                 }
-            }
+            })
             if (user.age) {
                 if (Number.isNaN(Number.parseInt(+user.age))) {
                     hasErrors = true
@@ -39,7 +39,5 @@ export default class ValidationControls {
             }
             return hasErrors
         }
-
-        
     }
 }

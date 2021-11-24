@@ -14,8 +14,6 @@ export default class EmployeeService {
         users.filter(user => user.type === "employee").map(user => {
             if (!this.validationControls.checkAnyErrorsForUsers(user)) {
                 this.employees.push(user)
-            } else {
-                this.validationControls.errors.push(new DataError("Wrong user type", user))
             }
         })
 
@@ -32,5 +30,17 @@ export default class EmployeeService {
         if (!this.validationControls.checkAnyErrorsForUsers(user)) {
             this.employees.push(user)
         }
+    }
+
+    getEmployeesSorted() {
+        return this.employees.sort((employee1, employee2) => {
+            if (employee1.firstName < employee2.firstName) {
+                return -1;
+            } else if (employee1.firstName === employee2.firstName) {
+                return 0;
+            } else {
+                return 1;
+            }
+        })
     }
 }

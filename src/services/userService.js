@@ -1,3 +1,4 @@
+import { users } from "../data/users.js";
 import CustomerService from "./customerService.js"
 import EmployeeService from "./employeeService.js"
 
@@ -22,23 +23,23 @@ export default class UserService {
         }
     }
 
-    listCustomers() {
-        return this.customers;
+    listAllUsers() {
+        const verifiedUsers = [];
+        verifiedUsers.push(this.customerService.customers)
+        verifiedUsers.push(this.employeeService.employees)
+        return verifiedUsers;
     }
 
-    getCustomerById(id) {
-        return this.customers.find(c => c.id === id)
-    }
-
-    getCustomersSorted() {
-        return this.customers.sort((customer1, customer2) => {
-            if (customer1.firstName < customer2.firstName) {
-                return -1;
-            } else if (customer1.firstName === customer2.firstName) {
-                return 0;
-            } else {
-                return 1;
-            }
-        })
+    getUserById(id) {
+        const isUserCustomer = this.customerService.customers.find(customer => customer.id === id);
+        const isUserEmployee = this.employeeService.employees.find(employee => employee.id === id)
+        if (isUserCustomer) {
+            return isUserCustomer
+        }
+        else if (isUserEmployee) {
+            return isUserEmployee
+        } else {
+            return "No registered user with such an ID was found. Please try something else."
+        }
     }
 }
