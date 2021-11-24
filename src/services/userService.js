@@ -1,85 +1,25 @@
-import { users } from "../data/users.js"
-import DataError from "../models/dataError.js"
+import CustomerService from "./customerService.js"
+import EmployeeService from "./employeeService.js"
 
 export default class UserService {
 
-    constructor(loggerService) {
-        this.employees = []
-        this.customers = []
-        this.errors = []
-        this.loggerService = loggerService
+    constructor() {
+        this.customerService = new CustomerService();
+        this.employeeService = new EmployeeService();
     }
 
     load() {
-        for (const user of users) {
-            switch (user.type) {
-                case "customer":
-                    if (!this.checkAnyErrorsForUsers(user)) {
-                        this.customers.push(user)
-                    }
-                    break;
-                case "employee":
-                    if (!this.checkAnyErrorsForUsers(user)) {
-                        this.employees.push(user)
-                    }
-                    break;
-                default:
-                    this.errors.push(new DataError("Wrong user type", user))
-                    break;
-            }
-        }
-    }
-
-    checkAnyErrorsForUsers(user) {
-        if (user.type === 'customer') {
-            let customerRequiredFields = "id firstName lastName age city".split(" ")
-            let hasErrors = false;
-            for (const field of customerRequiredFields) {
-                if (!user[field]) {
-                    hasErrors = true
-                    this.errors.push(new DataError(`Validation problem. ${field} is required`, user))
-                }
-            }
-            if (Number.isNaN(Number.parseInt(+user.age))) {
-                hasErrors = true
-                this.errors.push(new DataError(`Validation problem. ${user.age} is not an age`, user))
-            }
-            return hasErrors
-        }
-        if (user.type === 'employee') {
-            let employeeRequiredFields = "id firstName lastName age city salary".split(" ")
-            let hasErrors = false;
-            for (const field of employeeRequiredFields) {
-                if (!user[field]) {
-                    hasErrors = true
-                    this.errors.push(new DataError(`Validation problem. ${field} is required`, user))
-                }
-            }
-            if (Number.isNaN(Number.parseInt(+user.age))) {
-                hasErrors = true
-                this.errors.push(new DataError(`Validation problem. ${user.age} is not an age`, user))
-            }
-            return hasErrors
-        }
+        this.customerService.load();
+        this.employeeService.load();
     }
 
     add(user) {
-        switch (user.type) {
-            case "customer":
-                if (!this.checkAnyErrorsForUsers(user)) {
-                    this.customers.push(user)
-                }
-                break;
-            case "employee":
-                if (!this.checkAnyErrorsForUsers(user)) {
-                    this.employee.push(user)
-                }
-                break;
-            default:
-                this.errors.push(new DataError("This user can not be added. Wrong user type", user))
-                break;
+        if (user.type === 'customer' || user.creditCardNumber) {
+            this.customerService.add(user);
         }
-        this.loggerService.log(user)
+        if (user.type === 'employee' || user.salary) {
+            his.employeeService.add(user);
+        }
     }
 
     listCustomers() {
