@@ -18,6 +18,15 @@ export const users = [
         type: "customer"
     },
     {
+        id: 10,
+        firstName: "Zeynep",
+        lastName: "Koca",
+        city: "Trabzon",
+        salary: 10000,
+        age: 27,
+        type: "employee"
+    },
+    {
         id: 3,
         firstName: "Ahmet",
         lastName: "As",

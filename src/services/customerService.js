@@ -39,7 +39,7 @@ export default class CustomerService {
                 return 0;
             } else {
                 return 1;
-            }
+            } 
         })
     }
 }

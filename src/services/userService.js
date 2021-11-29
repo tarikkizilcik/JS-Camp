@@ -42,4 +42,15 @@ export default class UserService {
             return "No registered user with such an ID was found. Please try something else."
         }
     }
+
+    getAllUsersSorted() {
+        const siraliSortingArray = [];
+        const customerSorted = this.customerService.getCustomersSorted();
+        const employeSorted = this.employeeService.getEmployeesSorted();
+
+        siraliSortingArray.push(customerSorted)
+        siraliSortingArray.push(employeSorted)
+
+        return siraliSortingArray;
+    }
 }

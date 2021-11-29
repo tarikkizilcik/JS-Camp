@@ -8,7 +8,7 @@ let userService = new UserService(logger1)
 userService.load()
 
 let customerToAdd = new Customer(7, "Seda", "Yılmaz", "Ankara", "29", 65465)
-customerToAdd.type = 'customer';
+customerToAdd.type = 'customerr';
 userService.add(customerToAdd)
 console.log("For the whole Service: ");
 console.log(userService);
@@ -24,7 +24,11 @@ console.log("Verified User List: ");
 console.log(userService.listAllUsers())
 console.log("Search by Id: ");
 console.log(userService.getUserById(3));
-console.log("Sorted Customers: ");
-console.log(userService.customerService.getCustomersSorted());
-console.log("Sorted Employees: ");
-console.log(userService.employeeService.getEmployeesSorted());
+// console.log("Sorted Customers: ");
+// console.log(userService.customerService.getCustomersSorted());
+// console.log("Sorted Employees: ");
+// console.log(userService.employeeService.getEmployeesSorted());
+
+console.log("------------------");
+
+console.log(userService.getAllUsersSorted())
